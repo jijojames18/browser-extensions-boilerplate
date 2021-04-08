@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Title",
+  "version": "1.0",
+  "description": "Description",
+  "author": "Jijo James",
+  "permissions": ["contextMenus"],
+  "background": {
+    "service_worker": "script.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.github.com/*"],
+      "js": ["config.js", "populate.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
