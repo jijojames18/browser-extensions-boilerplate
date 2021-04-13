@@ -4,17 +4,16 @@
   "version": "1.0",
   "description": "Description",
   "author": "Jijo James",
-  "permissions": ["contextMenus"],
+  "permissions": [""],
   "background": {
-    "service_worker": "script.js"
+    "service_worker": "js/service-worker.js"
   },
   "action": {
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://*.github.com/*"],
-      "js": ["config.js", "populate.js"],
+      "js": ["config.js", "js/content-script.js"],
       "run_at": "document_start"
     }
   ]
