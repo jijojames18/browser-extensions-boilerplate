@@ -1,1 +1,1 @@
-"use strict";
+// Service worker

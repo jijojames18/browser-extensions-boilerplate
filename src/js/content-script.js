@@ -1,1 +1,1 @@
-"use strict";
+// Content script
