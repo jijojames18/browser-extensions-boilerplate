@@ -2,13 +2,23 @@ var path = require("path"),
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   WriteFilePlugin = require("write-file-webpack-plugin"),
-  MergeIntoSingleFilePlugin = require("webpack-merge-and-include-globally");
+  MergeIntoSingleFilePlugin = require("webpack-merge-and-include-globally"),
+  SassPlugin = require("sass-webpack-plugin");
 
 var options = {
   mode: "development",
   output: {
     filename: "[name]",
     path: path.resolve(__dirname, "dist"),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ["sass-loader"],
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [
     new CopyWebpackPlugin([
@@ -27,6 +37,14 @@ var options = {
         },
       },
     ]),
+    new SassPlugin("./src/css/popup.scss", {
+      sourceMap: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "src", "popup.html"),
+      filename: "popup.html",
+      chunks: ["popup"],
+    }),
     new MergeIntoSingleFilePlugin({
       files: {
         "popup.js": [
