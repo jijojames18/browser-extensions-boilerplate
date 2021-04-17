@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "description": "Boilerplate for creating browser extensions",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node scripts/build.js"
   },
   "author": "Jijo James",
   "license": "MIT",
   "devDependencies": {
+    "@babel/runtime": "^7.13.10",
     "clean-webpack-plugin": "3.0.0",
     "copy-webpack-plugin": "5.0.5",
     "css-loader": "3.2.0",
@@ -17,8 +18,9 @@
     "html-webpack-plugin": "3.2.0",
     "style-loader": "1.0.0",
     "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.9.0",
-    "write-file-webpack-plugin": "4.5.1",
-    "webpack-cli": "3.3.10"
+    "webpack-merge-and-include-globally": "^2.3.4",
+    "write-file-webpack-plugin": "4.5.1"
   }
 }
