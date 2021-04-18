@@ -1,22 +1,37 @@
-var path = require("path"),
+var webpack = require("webpack"),
+  path = require("path"),
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   WriteFilePlugin = require("write-file-webpack-plugin"),
-  MergeIntoSingleFilePlugin = require("webpack-merge-and-include-globally"),
-  SassPlugin = require("sass-webpack-plugin");
+  MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var options = {
-  mode: "development",
+  entry: {
+    popup: path.join(__dirname, "src", "js", "popup.js"),
+    "content-script": path.join(__dirname, "src", "js", "content-script.js"),
+    "service-worker": path.join(__dirname, "src", "js", "service-worker.js"),
+  },
   output: {
-    filename: "[name]",
-    path: path.resolve(__dirname, "dist"),
+    path: path.join(__dirname, "dist"),
+    filename: "[name].js",
+  },
+  optimization: {
+    minimize: false,
   },
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        use: ["sass-loader"],
-        exclude: /node_modules/,
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.(scss)$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
       },
     ],
   },
@@ -24,7 +39,7 @@ var options = {
     new CopyWebpackPlugin([
       {
         from: "src/manifest.json",
-        transform: function (content, path) {
+        transform: function (content) {
           return Buffer.from(
             JSON.stringify({
               name: process.env.npm_package_name,
@@ -37,36 +52,12 @@ var options = {
         },
       },
     ]),
-    new SassPlugin("./src/css/popup.scss", {
-      sourceMap: false,
-    }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "popup.html"),
       filename: "popup.html",
       chunks: ["popup"],
     }),
-    new MergeIntoSingleFilePlugin({
-      files: {
-        "popup.js": [
-          path.join(__dirname, "src", "js", "config.js"),
-          path.join(__dirname, "src", "js", "common", "constants.js"),
-          path.join(__dirname, "src", "js", "common", "context.js"),
-          path.join(__dirname, "src", "js", "popup.js"),
-        ],
-        "content-script.js": [
-          path.join(__dirname, "src", "js", "config.js"),
-          path.join(__dirname, "src", "js", "common", "constants.js"),
-          path.join(__dirname, "src", "js", "common", "context.js"),
-          path.join(__dirname, "src", "js", "content-script.js"),
-        ],
-        "service-worker.js": [
-          path.join(__dirname, "src", "js", "config.js"),
-          path.join(__dirname, "src", "js", "common", "constants.js"),
-          path.join(__dirname, "src", "js", "common", "context.js"),
-          path.join(__dirname, "src", "js", "service-worker.js"),
-        ],
-      },
-    }),
+    new MiniCssExtractPlugin(),
     new WriteFilePlugin(),
   ],
 };
