@@ -26,19 +26,14 @@ var options = {
       },
       {
         test: /\.(scss)$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "style-loader",
-          "css-loader",
-          "sass-loader",
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: "src/manifest.json",
+        from: path.join(__dirname, "src", "manifest.json"),
         transform: function (content) {
           return Buffer.from(
             JSON.stringify({
@@ -57,7 +52,9 @@ var options = {
       filename: "popup.html",
       chunks: ["popup"],
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
     new WriteFilePlugin(),
   ],
 };
