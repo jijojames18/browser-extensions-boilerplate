@@ -1,3 +1,4 @@
+// Context
 const extensionWindow = (function () {
   if (typeof chrome !== undefined) {
     return chrome;
@@ -7,3 +8,5 @@ const extensionWindow = (function () {
     return msBrowser;
   }
 })();
+
+export default extensionWindow;
