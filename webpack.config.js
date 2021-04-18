@@ -1,5 +1,4 @@
-var webpack = require("webpack"),
-  path = require("path"),
+var path = require("path"),
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   WriteFilePlugin = require("write-file-webpack-plugin"),
