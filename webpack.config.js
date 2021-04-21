@@ -1,4 +1,5 @@
 var path = require("path"),
+  alias = require("./alias"),
   CopyWebpackPlugin = require("copy-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   WriteFilePlugin = require("write-file-webpack-plugin"),
@@ -16,6 +17,9 @@ var options = {
   },
   optimization: {
     minimize: false,
+  },
+  resolve: {
+    alias,
   },
   module: {
     rules: [
