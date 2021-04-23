@@ -2,7 +2,7 @@
 
 ### Description
 
-Boilerplate project that can be used to bootstrap browser extensions.  
+Boilerplate project that can be used to bootstrap browser extensions.  The project uses Webpack to build an extension and places the final build in the `dist` folder.  
 
 ### Folder structure
 ```
@@ -27,6 +27,18 @@ Copy config.sample.js as config.js.
 
 | Field | Type | Description | Default |
 | ----- | ---- | ----------- | ------- |
+
+### Available Scripts
+
+In the project directory, you can run:
+
+#### `npm run build`
+
+Builds the project into the `build` folder.
+
+### `npm run dev`
+
+Watches for changes to `src` folder and builds the project when changes happen.
 
 ### Documentation
 
