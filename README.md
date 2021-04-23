@@ -3,7 +3,8 @@
 ### Description
 
 Boilerplate project that can be used to bootstrap browser extensions.  
-The project uses Webpack to build an extension and places the final build in the `dist` folder. The project supports service worker, content scripts and popup required for making browser extensions. Once the build is done, the extensions can be loaded directly into browser using the `dist` folder as the source. Webpack is configured to work in 'development' mode and will not minify/uglify the JavaScript code. 
+The project uses Webpack to build an extension and places the final build in the `dist` folder. The project supports service worker, content scripts and popup required for making browser extensions. Once the build is done, the extensions can be loaded directly into browser using the `dist` folder as the source. Webpack is configured to work in 'development' mode and will not minify/uglify the JavaScript code. All manifest entries related to extension should be kept inside `src/manfiest.json` except `name`, `author`, `description` and `version`, which will be copied from `package.json` during build stage. During developement, `npm run dev` will start a watcher process which will automatically change build the extension when any file in `src` folder is changed.  
+
 
 ### Folder structure
 ```
@@ -21,6 +22,19 @@ src
 ├── manifest.json
 └── popup.html
 ```
+
+*Steps to perform for creating a new extension*  
+1. Update the package.json fields such as name, description, version and author.
+2. Remove the Boilerplate description in README.md.
+3. Run `npm install` or `npm ci`.
+
+------------------------------------------------------------------------------------  
+
+# Extension Name
+
+### Description
+
+Short description of extension
 
 ### Config
 
