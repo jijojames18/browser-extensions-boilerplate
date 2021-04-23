@@ -2,7 +2,8 @@
 
 ### Description
 
-Boilerplate project that can be used to bootstrap browser extensions.  The project uses Webpack to build an extension and places the final build in the `dist` folder.  
+Boilerplate project that can be used to bootstrap browser extensions.  
+The project uses Webpack to build an extension and places the final build in the `dist` folder. The project supports service worker, content scripts and popup required for making browser extensions. Once the build is done, the extensions can be loaded directly into browser using the `dist` folder as the source. Webpack is configured to work in 'development' mode and will not minify/uglify the JavaScript code. 
 
 ### Folder structure
 ```
