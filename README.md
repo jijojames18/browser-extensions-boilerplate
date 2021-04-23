@@ -37,7 +37,7 @@ In the project directory, you can run:
 
 Builds the project into the `build` folder.
 
-### `npm run dev`
+#### `npm run dev`
 
 Watches for changes to `src` folder and builds the project when changes happen.
 
