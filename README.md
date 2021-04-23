@@ -1,4 +1,4 @@
-# Extension
+# Browser Extension Boilerplate
 
 ### Description
 
